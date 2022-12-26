@@ -1,0 +1,139 @@
+<mvc:View controllerName="tt.ZHR_YEMEK_UCRET.controller.Object" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic"
+	xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:f="sap.ui.layout.form" xmlns:fb="sap.ui.comp.filterbar" xmlns:l="sap.ui.layout"
+	xmlns:table="sap.ui.table">
+	<semantic:FullscreenPage id="pageDetay" enableScrolling="true" navButtonPress="onNavBack" showNavButton="false" busy="false"
+		title="{i18n>worklistTitle}">
+		<semantic:content>
+			<table:Table width="auto" id="tableDetay" selectionMode="None" inset="false" rows="{detayModel>/}" growing="true" visibleRowCount="1"
+				growingScrollToLoad="false" growingThreshold="100">
+				<table:columns>
+					<table:Column visible="false" hAlign="Center">
+						<Label wrapping="true" text=""/>
+						<table:template>
+							<Text text="{detayModel>Pernr}"/>
+						</table:template>
+					</table:Column>
+					<table:Column width="6rem" hAlign="Center">
+						<Label wrapping="true" text="{i18n>hesapDonem}" />
+						<table:template>
+							<Text wrapping="true"
+								text=" {= ${header>/Kapsam} === 'D' ? ${path: 'detayModel>FbegdaP' , type: 'sap.ui.model.type.DateTime' , formatOptions: { pattern: 'MM.yyyy' }} : ${path: 'detayModel>Fbegda' , type: 'sap.ui.model.type.DateTime' , formatOptions: { pattern: 'MM.yyyy' }} } "/>
+						</table:template>
+					</table:Column>
+					<table:Column id="idFunDetay" hAlign="Center">
+						<Label wrapping="true" text="{i18n>isGunu}"/>
+						<table:template>
+							<Text
+								text=" {= ${header>/Kapsam} === 'D' ? ${path: 'detayModel>FgunP' , type: 'sap.ui.model.type.Integer', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 0 }} : ${ path: 'detayModel>Fgun' , type: 'sap.ui.model.type.Integer', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 0 }} } "/>
+						</table:template>
+					</table:Column>
+					<table:Column id="idToplamYemek" hAlign="Center">
+						<Label wrapping="true" text="{i18n>ilgiliYemek}"/>
+						<table:template>
+							<Text
+								text="{ path: 'detayModel>Fgun' , type: 'sap.ui.model.type.Integer', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 0 } }"/>
+						</table:template>
+					</table:Column>
+					<table:Column visible="{= ${header>/Kapsam} === 'D' ? false : true }" hAlign="Center">
+						<Label wrapping="true" text="{i18n>odemeYemek}"/>
+						<table:template>
+							<Text
+								text=" { path: 'detayModel>Odnckgun' , type: 'sap.ui.model.type.Integer', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 0 } } "/>
+						</table:template>
+					</table:Column>
+					<table:Column hAlign="Center">
+						<Label wrapping="true" text="{i18n>gunlukYemek}"/>
+						<table:template>
+							<Text
+								text=" {= ${header>/Kapsam} === 'D' ? ${ path: 'detayModel>GunlukUcretP' , type: 'sap.ui.model.type.Integer', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 } } : ${ path: 'detayModel>GunlukUcret' , type: 'sap.ui.model.type.Integer', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 } } } "/>
+						</table:template>
+					</table:Column>
+					<table:Column width="7rem" hAlign="Center">
+						<Label wrapping="true" text="{i18n>devamsizlikGun}"/>
+						<table:template>
+							<Text
+								text="{= ${header>/Kapsam} === 'D' ? ${path: 'detayModel>DevamsizGunP' , type: 'sap.ui.model.type.String', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 }} : ${ path: 'detayModel>DevamsizGun' , type: 'sap.ui.model.type.String', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 }} } "/>
+						</table:template>
+					</table:Column>
+					<table:Column hAlign="Center">
+						<Label wrapping="true" text="{i18n>altinciGun}"/>
+						<table:template>
+							<Text
+								text=" {= ${header>/Kapsam} === 'D' ? ${ path: 'detayModel>AltigunP' , type: 'sap.ui.model.type.String', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 } } : ${ path: 'detayModel>Altigun' , type: 'sap.ui.model.type.String', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 } } } "/>
+						</table:template>
+					</table:Column>
+					<table:Column hAlign="Center">
+						<Label wrapping="true" text="{i18n>vardiyaCalismasi}"/>
+						<table:template>
+							<Text
+								text=" {= ${header>/Kapsam} === 'D' ? ${ path: 'detayModel>VardiyaGunP' , type: 'sap.ui.model.type.Integer', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 } } : ${ path: 'detayModel>VardiyaGun' , type: 'sap.ui.model.type.Integer', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 } } } "/>
+						</table:template>
+					</table:Column>
+					<table:Column visible="{= ${header>/Kapsam} === 'D' ? false : true }" hAlign="Center">
+						<Label wrapping="true" text="{i18n>mesai}"/>
+						<table:template>
+							<Text
+								text=" { path: 'detayModel>MesaiGun' , type: 'sap.ui.model.type.Integer', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 0 } } "/>
+						</table:template>
+					</table:Column>
+					<table:Column visible="{= ${header>/Kapsam} === 'D' ? false : true }" hAlign="Center">
+						<Label wrapping="true" text="{i18n>harcirah}"/>
+						<table:template>
+							<Text
+								text=" { path: 'detayModel>HarcirahGun' , type: 'sap.ui.model.type.Integer', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 0 } } "/>
+						</table:template>
+					</table:Column>
+					<table:Column hAlign="Center">
+						<Label wrapping="true" text="{i18n>borcAlacak}"/>
+						<table:template>
+							<Text
+								text=" {= ${header>/Kapsam} === 'D' ? ${ path: 'detayModel>GcnDnmFark' , type: 'sap.ui.model.type.Integer', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 } } : ${ path: 'detayModel>GcnDnmFark' , type: 'sap.ui.model.type.Integer', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 } } } "/>
+						</table:template>
+					</table:Column>
+					<table:Column width="7rem" hAlign="Center">
+						<Label wrapping="true" text="{= ${header>/Kapsam} === 'D' ? ${i18n>igiliDonemPesin} : ${i18n>igiliDonemPesinNew} }"/>
+						<table:template>
+							<Text
+								text=" {= ${header>/Kapsam} === 'D' ? ${ path: 'detayModel>HakedisP' , type: 'sap.ui.model.type.Integer', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 } } :  
+								${ path: 'detayModel>TopTutar' , type: 'sap.ui.model.type.Integer', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 } }} "/>
+						</table:template>
+					</table:Column>
+					<table:Column hAlign="Center">
+						<Label wrapping="true" text="{i18n>akilliKart}"/>
+						<table:template>
+							<Text
+								text=" {= ${header>/Kapsam} === 'D' ? ${ path: 'detayModel>MetropolTut' , type: 'sap.ui.model.type.Integer', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 } } : ${ path: 'detayModel>MetropolTut' , type: 'sap.ui.model.type.Integer', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 } } } "/>
+						</table:template>
+					</table:Column>
+					<table:Column hAlign="Center">
+						<Label wrapping="true" text="{i18n>odemeTarih}"/>
+						<table:template>
+							<Text
+								text=" {= ${header>/Kapsam} === 'D' ? ${path: 'detayModel>FbegdaP' , type: 'sap.ui.model.type.DateTime' , formatOptions: { pattern: 'dd.MM.yyyy' }} : ${path: 'detayModel>HesapTarih' , type: 'sap.ui.model.type.DateTime' , formatOptions: { pattern: 'dd.MM.yyyy' }} }"/>
+						</table:template>
+					</table:Column>
+					<table:Column visible="{= ${header>/Kapsam} === 'D' ? true : false }" width="7rem" hAlign="Center">
+						<Label wrapping="true" text="{i18n>ilgiliDonemHakEdis}"/>
+						<table:template>
+							<Text
+								text="{ path: 'detayModel>TopTutar' , type: 'sap.ui.model.type.Integer', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 } }"/>
+						</table:template>
+					</table:Column>
+					<table:Column visible="{= ${header>/Kapsam} === 'D' ? true : false }" hAlign="Center">
+						<Label wrapping="true" text="{i18n>sonrakiDonemBorc}"/>
+						<table:template>
+							<Text
+								text="{= ${header>/Kapsam} === 'D' ? ${ path: 'detayModel>Fark' , type: 'sap.ui.model.type.Integer', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 } } : ${ path: 'detayModel>OnckAyPsnYtn' , type: 'sap.ui.model.type.Integer', formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 } } } "/>
+						</table:template>
+					</table:Column>
+					<table:Column hAlign="Center">
+						<Label wrapping="true" text="{i18n>aciklama}"/>
+						<table:template>
+							<Text text="{detayModel>FarkAciklm}"/>
+						</table:template>
+					</table:Column>
+				</table:columns>
+			</table:Table>
+		</semantic:content>
+	</semantic:FullscreenPage>
+</mvc:View>

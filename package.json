@@ -1,0 +1,35 @@
+{
+  "name": "zsatis_satisra",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webapp/index.html",
+  "scripts": {
+    "test": "ui5 serve",
+    "deploy": "ui5 build --exclude-task escapeNonAsciiCharacters"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/telekom-retail/fiori/zsatis_satisra.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/telekom-retail/fiori/zsatis_satisra/issues"
+  },
+  "homepage": "https://gitlab.com/telekom-retail/fiori/zsatis_satisra#readme",
+  "devDependencies": {
+    "ui5-middleware-livereload": "^0.5.1",
+    "ui5-middleware-servestatic": "^0.3.3",
+    "ui5-middleware-simpleproxy": "^0.6.1",
+    "ui5-task-nwabap-deployer": "^1.0.15"
+  },
+  "ui5": {
+    "dependencies": [
+      "ui5-middleware-livereload",
+      "ui5-middleware-simpleproxy",
+      "ui5-task-nwabap-deployer",
+      "ui5-middleware-servestatic"
+    ]
+  },
+  "dependencies": {}
+}

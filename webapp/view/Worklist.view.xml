@@ -1,0 +1,121 @@
+<mvc:View controllerName="tt.ZHR_YEMEK_UCRET.controller.Worklist" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic"
+	xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:f="sap.ui.layout.form" xmlns:fb="sap.ui.comp.filterbar" xmlns:l="sap.ui.layout"
+	xmlns:table="sap.ui.table">
+	<semantic:FullscreenPage id="page" enableScrolling="true" navButtonPress="onNavBack" showNavButton="false" busy="false"
+		title="{i18n>worklistTitle}">
+		<semantic:content>
+			<l:VerticalLayout width="100%">
+				<fb:FilterBar reset="onReset" search="onSearch" showRestoreButton="true" showClearButton="true">
+					<fb:filterGroupItems>
+						<fb:FilterGroupItem groupName="__$INTERNAL$" name="A" label="{i18n>tarih}" partOfCurrentVariant="true" visibleInFilterBar="true">
+							<fb:control>
+								<DateRangeSelection id="idTarih" delimiter="{path:'talepFilterModel>/delimiter'}" dateValue="{path:'talepFilterModel>/dateValue'}"
+									secondDateValue="{path:'talepFilterModel>/secondDateValue'}" displayFormat="{path:'talepFilterModel>/dateFormat'}"
+									change="onBeforeRendering"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+					</fb:filterGroupItems>
+				</fb:FilterBar>
+			</l:VerticalLayout>
+			<table:Table width="auto" id="table" selectionMode="None" inset="false" rows="{detayModel>/}" growing="true" visibleRowCount="5"
+				growingScrollToLoad="false" growingThreshold="100">
+				<table:columns >
+					<table:Column filterProperty="Pernr" visible="false" hAlign="Center">
+						<Label wrapping="true" text=""/>
+						<table:template>
+							<Text text="{detayModel>Pernr}"/>
+						</table:template>
+					</table:Column>
+					<table:Column filterProperty="Fbegda" hAlign="Center">
+						<Label wrapping="true" text="{i18n>donem}"/>
+						<table:template>
+							<Text text="{path: 'detayModel>Fbegda' , type: 'sap.ui.model.type.DateTime' , formatOptions: { pattern: 'MM.yyyy' }}"/>
+						</table:template>
+					</table:Column>
+					<table:Column filterProperty="Fgun" id="idFun" visible="false" hAlign="Center">
+						<Label wrapping="true" text="{i18n>isGunu}"/>
+						<table:template>
+							<Text text="{ path: 'detayModel>Fgun' ,  type: 'sap.ui.model.type.Integer', 
+											formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 0 } }"/>
+						</table:template>
+					</table:Column>
+					<table:Column filterProperty="Odnckgun" id="idOdnckgun" visible="false" hAlign="Center">
+						<Label wrapping="true" text="{= ${header>/Kapsam} === 'D' ? ${i18n>toplamYemek} : ${i18n>odemeYemek} }" />
+						<table:template>
+							<Text text="
+							
+							{ path: 'detayModel>Odnckgun' ,  type: 'sap.ui.model.type.Integer', 
+											formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 0 } }"/>
+						</table:template>
+					</table:Column>
+					<table:Column filterProperty="GunlukUcret" hAlign="Center">
+						<Label wrapping="true" text="{i18n>gunlukYemek}"/>
+						<table:template>
+							<Text text="{ path: 'detayModel>GunlukUcret' ,  type: 'sap.ui.model.type.Integer', 
+											formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 } }"/>
+						</table:template>
+					</table:Column>
+					<table:Column filterProperty="TopTutar" hAlign="Center"> 
+						<Label wrapping="true" text="{= ${header>/Kapsam} === 'D' ? ${i18n>pesinHakedis} : ${i18n>hesaplananHakEdis} }" />
+						<table:template>
+							<Text wrapping="true" text="{= ${header>/Kapsam} === 'D' ? 
+							${ path: 'detayModel>OdnckgunP' ,  type: 'sap.ui.model.type.Integer', 
+											formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 } }
+							: ${ path: 'detayModel>TopTutar' ,  type: 'sap.ui.model.type.Integer', 
+											formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 }} }"/>
+						</table:template>
+					</table:Column>
+					<table:Column filterProperty="GcnDnmFark" hAlign="Center">
+						<Label wrapping="true" text="{i18n>borcAlacak}"/>
+						<table:template>
+							<Text
+								text="{= ${header>/Kapsam} === 'D' ? 
+								${ path: 'detayModel>Fark' ,  type: 'sap.ui.model.type.Integer', 
+											formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 }}
+								:
+								${ path: 'detayModel>GcnDnmFark' ,  type: 'sap.ui.model.type.Integer', 
+											formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 }} }"/>
+						</table:template>
+					</table:Column>
+					<table:Column filterProperty="MetropolTut" hAlign="Center">
+						<Label wrapping="true" text="{i18n>akilliKart}"/>
+						<table:template>
+							<Text 	text=" {= ${header>/Kapsam} === 'D' ? 
+							${ path: 'detayModel>OnckAyPsnYtn' ,  type: 'sap.ui.model.type.Integer', 
+											formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 }}
+							:
+							${ path: 'detayModel>MetropolTut' ,  type: 'sap.ui.model.type.Integer', 
+											formatOptions: { preserveDecimals: false , groupingSeperator: '.', decimalSeperator: ',' , maxFractionDigits: 2 }} }"/>
+						</table:template>
+					</table:Column>
+					<table:Column filterProperty="HesapTarih" hAlign="Center">
+						<Label wrapping="true" text="{i18n>odemeTarih}"/>
+						<table:template>
+							<Text text="{path: 'detayModel>HesapTarih' , type: 'sap.ui.model.type.DateTime' , formatOptions: { pattern: 'dd.MM.yyyy' }}"/>
+						</table:template>
+					</table:Column>
+					<table:Column width="3em" filterProperty="" hAlign="Center">
+						<Label wrapping="true" text=""/>
+						<table:template>
+							<button icon="sap-icon://navigation-right-arrow" press="onPress"></button>
+						</table:template>
+					</table:Column>
+				</table:columns>
+			</table:Table>
+		</semantic:content>
+		<Table mode="None" id="tableMesaj" inset="false" items="{mesajModel>/}">
+			<columns>
+				<Column>
+					<Text text=""/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{mesajModel>BilgiText}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</semantic:FullscreenPage>
+</mvc:View>
