@@ -1,0 +1,88 @@
+<mvc:View controllerName="tt.ZHR_TT_ESS_GIRIS_CIKIS.controller.Worklist"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.m.semantic"
+
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:l="sap.ui.layout"
+	xmlns:table="sap.ui.table"
+	xmlns:form="sap.ui.layout.form">
+	<semantic:FullscreenPage id="page" enableScrolling="true" navButtonPress="onNavBack" showNavButton="false" busy="false" title="{i18n>worklistTitle}">
+		<semantic:content>
+			<l:VerticalLayout width="100%">
+				<fb:FilterBar  showRestoreButton="true" showClearButton="true" showFilterConfiguration="false" showGoOnFB="false">
+					<fb:filterGroupItems>
+						<fb:FilterGroupItem groupName="__$INTERNAL$" name="A" label="{i18n>tarih}" partOfCurrentVariant="true" visibleInFilterBar="true">
+							<fb:control>
+								<DateRangeSelection id="idTarih" delimiter="{path:'talepFilterModel>/delimiter'}" dateValue="{path:'talepFilterModel>/dateValue'}" secondDateValue="{path:'talepFilterModel>/secondDateValue'}" displayFormat="{path:'talepFilterModel>/dateFormat'}" change="onChangeFilter"/>
+							</fb:control>
+						</fb:FilterGroupItem>
+					</fb:filterGroupItems>
+				</fb:FilterBar>
+			</l:VerticalLayout>
+
+			<table:Table width="auto" id="table" selectionMode="None" inset="false" rows="{detayModel>/}" growing="true" visibleRowCount="5" growingScrollToLoad="false" growingThreshold="100">
+				<table:columns >
+					<!-- <table:Column filterProperty="Pernr" hAlign="Center">
+						<Label wrapping="true" text="{/#GirisCikisList/Pernr/@sap:label}" />
+						<table:template>
+							<Text text="{detayModel>Pernr}"/>
+						</table:template>
+					</table:Column>
+				    <table:Column filterProperty="Ename" hAlign="Center">
+						<Label wrapping="true" text="{/#GirisCikisList/Ename/@sap:label}" />
+						<table:template>
+							<Text text="{detayModel>Ename}"/>
+						</table:template>
+					</table:Column>
+					<table:Column filterProperty="Orgtx" hAlign="Center">
+						<Label wrapping="true" text="{/#GirisCikisList/Orgtx/@sap:label}" />
+						<table:template>
+							<Text text="{detayModel>Orgtx}"/>
+						</table:template>
+					</table:Column> -->
+					<table:Column filterProperty="Ldate" hAlign="Center">
+						<Label wrapping="true" text="{/#GirisCikisList/Ldate/@sap:label}"/>
+						<table:template>
+							<Text text="{path: 'detayModel>Ldate' , type: 'sap.ui.model.type.DateTime' , formatOptions: { pattern: 'dd.MM.yyyy' }}"/>
+						</table:template>
+					</table:Column>
+					<table:Column filterProperty="Beguz" hAlign="Center">
+						<Label wrapping="true" text="Giriş" />
+						<table:template>
+							<Text text="{ path : 'detayModel>Beguz' , type: 'sap.ui.model.odata.type.Time', formatOptions: { source : 'HH:MM:SS'  } }"/>
+						</table:template>
+					</table:Column>
+
+					<table:Column filterProperty="Enduz" hAlign="Center">
+						<Label wrapping="true" text="Çıkış" />
+						<table:template>
+						<Text text="{ path : 'detayModel>Enduz' , type: 'sap.ui.model.odata.type.Time', formatOptions: { source : 'HH:MM:SS'  } }"/>
+						</table:template>
+					</table:Column>
+
+					<!-- <table:Column filterProperty="Ddtext" hAlign="Center">
+						<Label wrapping="true" text="{/#GirisCikisList/Ddtext/@sap:label}" />
+						<table:template>
+							<Text text="{detayModel>Ddtext}"/>
+						</table:template>
+					</table:Column> -->
+					<!-- <table:Column filterProperty="Dallf" hAlign="Center">
+						<Label wrapping="true" text="{/#GirisCikisList/Dallf/@sap:label}" />
+						<table:template>
+							<Text text="{detayModel>Dallf}"/>
+						</table:template>
+					</table:Column> -->
+
+
+				</table:columns>
+			</table:Table>
+		</semantic:content>
+
+		<form:SimpleForm editable="true">
+			<Text text="Loj.Hizm.Dir./ Elektronik Güvenlik Müdürlüğü ile, Bölge ve İl Müdürlükleri personeli için, Tesis ve Destek birimi yetkilileri ile irtibata geçilebilir. " />
+		</form:SimpleForm>
+
+
+	</semantic:FullscreenPage>
+</mvc:View>

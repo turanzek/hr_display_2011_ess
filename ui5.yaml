@@ -1,0 +1,43 @@
+specVersion: '2.2'
+metadata:
+  name: ZHR_TT_ESS_GIRIS_CIKIS
+resources:
+  configuration:
+    propertiesFileSourceEncoding: "UTF-8"
+type: application
+server:
+  customMiddleware:
+  - name: ui5-middleware-simpleproxy
+    mountPath: /sap/opu/odata/sap/ZHR_TT_ESS_GIRIS_CIKIS_SRV/
+    afterMiddleware: compression
+    configuration:
+      baseUri: http://10.6.133.163:8000/sap/opu/odata/sap/ZHR_TT_ESS_GIRIS_CIKIS_SRV/
+      useStrictSSL: false
+  - name: ui5-middleware-servestatic
+    afterMiddleware: compression
+    mountPath: /resources
+    configuration:
+      rootPath: "C:/SapWebIde/eclipse/plugins/com.sap.webide.orionplugin_1.53.5/ui5/1.84.7/resources"    
+  - name: ui5-middleware-livereload
+    afterMiddleware: compression
+    configuration:
+      debug: true
+      extraExts: "xml,json,properties"
+      port: 35730
+      watchPath: "webapp"
+builder:
+  customTasks:
+  - name: ui5-task-nwabap-deployer
+    afterTask: generateVersionInfo
+    configuration: 
+      resources:
+        pattern: "**/*.*"
+      connection:
+        server: http://10.6.133.163:8000
+      ui5:
+        language: TR
+        package: ZFIORI
+        bspContainer: ZHR_TT_ESS_GIRI
+        bspContainerText: ESS Giriş Çıkış
+        transportNo: HFDK901126
+        calculateApplicationIndex: true      
