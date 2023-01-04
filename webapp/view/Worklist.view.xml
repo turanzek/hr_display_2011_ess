@@ -80,7 +80,7 @@
 		</semantic:content>
 
 		<form:SimpleForm editable="true">
-			<Text text="Loj.Hizm.Dir./ Elektronik Güvenlik Müdürlüğü ile, Bölge ve İl Müdürlükleri personeli için, Tesis ve Destek birimi yetkilileri ile irtibata geçilebilir. " />
+			<Text text="Giriş – çıkış verileri ile ilgili olarak; Genel Müdürlük personeli için, Tesis Yön. ve Loj.Hizm.Dir./ Elektronik Güvenlik Müdürlüğü ile, Bölge ve İl Müdürlükleri personeli için, Tesis ve Destek birimi yetkilileri ile irtibata geçilebilir. " />
 		</form:SimpleForm>
 
 

@@ -107,7 +107,7 @@
                     ]
                 },
                 {
-                    "pattern": "YemekUcretiDetayListSet/{objectId}/{kapsam}",
+                    "pattern": "GirisCikisListSet/{objectId}",
                     "name": "object",
                     "target": [
                         "object"

@@ -38,6 +38,6 @@ builder:
         language: TR
         package: ZFIORI
         bspContainer: ZHR_TT_ESS_GIRI
-        bspContainerText: ESS Giriş Çıkış
+        bspContainerText: Giriş Çıkış Bilgilerim
         transportNo: HFDK901126
         calculateApplicationIndex: true      
